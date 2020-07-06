@@ -9,3 +9,9 @@ header{
     padding:10px;
     margin:10px
 }
+
+p{
+    display: inline-block;
+    font-size: large;
+    font-weight: 700;
+}
