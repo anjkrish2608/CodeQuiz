@@ -14,7 +14,7 @@ var ans = {
 }
 var answerSelected;
 var score;
-
+var scores=[];
 //variable to html
 var container = $("#container");
 var container2 = $("#container2");
@@ -37,20 +37,17 @@ start.text("Start Quiz");
 start.attr("class", "btn btn-success start");
 container2.append(start);
 
-//on click call question function
+//start on click call question function
 $(".start").on("click", function () {
     startTimer();
     questions();
 });
-$(".answer").on("click", function () {
-    checkAnswer(this.textContent);
-    questions();
-});
+
 
 function questions() {
     container2.empty();
     var counter = 0;
-    console.log(counter);
+    console.log("counter: "+counter);
     question.text(qArray[counter]);
     container2.append(question);
     //loop to create question n answer field
@@ -62,7 +59,7 @@ function questions() {
         container2.append($("<br>"));
     }
     counter++;
-    console.log(counter);
+    console.log("counter: "+counter);
 }
 
 function checkAnswer(answerSelected) {
@@ -101,9 +98,11 @@ function checkAnswer(answerSelected) {
     else {
         if (ans[4].answerSelected === "in relation to nearest ancestor") {
             score++;
+            saveScore(score);
         }
         else {
             secondsLeft - 10;
+            saveScore(score);
         }
     }
     $("#score").text(score);
@@ -118,7 +117,7 @@ function startTimer() {
             if (secondsLeft === 0) {
                 if (minutesLeft === 0) {
                     clearInterval(timerInterval);
-                    showLeaderBoard();
+                    saveScore();
                 }
                 else {
                     minutesLeft--;
@@ -139,8 +138,27 @@ function showLeaderBoard() {
     question.text("Leaderboard of Anj's Coding Quiz!!");
     var list = $("<ol>");
     var lItem = $("<li>");
-    lItem.text("Your score is: " + score);
+    var LBlastScore=localStorage.getItem("lastScore");
+    var LBscores=localStorage.getItem("scores");
+    for(var i=0;i<LBscores.length;i++){
+        var score_i =lItem.text(LBscores[i]);
+        list.append(score_i);
+    }
+    list.append(LBlastScore);
     container2.append(question);
-    list.append(lItem);
     container2.append(list);
 }
+
+function saveScore(lastScore){
+    scores.unshift(lastScore);
+    localStorage.setItem("lastScore",lastScore);
+    localStorage.setItem("scores",scores);
+    showLeaderBoard();
+}
+
+//answer on click
+$(".answer").on("click", function () {
+    console.log("answer clicked");
+    checkAnswer(this.textContent);
+    questions();
+});

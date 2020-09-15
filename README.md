@@ -1,42 +1,46 @@
-# CodeQuiz
-explain/showcase what application does
+# Code Quiz
 
-justify technology used
+[Click here to view repository.](https://github.com/anjkrish2608/CodeQuiz)
 
-challenges faced
+[Click here to access the application.](https://anjkrish2608.github.io/CodeQuiz/)
 
-features to be implemented
+## Table of Contents
 
-describe what why how:
-	- what is motivation
-	- why did you build this application
-	- what problem is now solved?
-	- what did you learn?
-	- what makes your project stand out?
+* [Description of Application](#des)
+* [Technologies Used](#tech)
+* [Challenges Faced](#chall)
+* [Features to be Implemented](#dev)
+* [Credits](#cred)
 
-features section
+<a id="des"></a>
 
-if big consider a table of contents in the read me?
+## Description of Application
+The Code Quiz uses DOM manipulation to ask the user a series of questions while a countdown times them. The score of questions correct is recorded and if a question is answered incorrectly the user loses 10 seconds.  
 
-installation steps?
+<a id="tech"></a>
 
-usage instructions
+## Technologies Used
+While creating this application I have used many different technologies listed below:
 
-credits:
-	- list of collaborators w links to their githubs
-	- links to tutorials
-	- 3rd party assets
+* JavaScript ES6 : to write all of the code inside script.js
+* Bootstrapt : for all the CSS styling
 
-liscence: choosealisence.com
+<a id="chall"></a>
 
-badges: img.shields.io/github/languages/top/nielsenjared/badmath
+## Challenges Faced
+Throughout the creation of this application I have faced many challenges. The main challenge I faced was due to errors faced with DOM element creation impacting the function of on click events.
 
-contributing: if u want contributors guidlines : contributor-covenant.org
+<a id="dev"></a>
 
-tests: eg how to run
+## Features to be Implemented
+In the future I would like to implement the more creative CSS styling and improve the function of the quiz.
 
-link to repo
+<a id="cred"></a>
 
-link to site
+## Credits
+As mentioned in [Technologies Used](#tech) the following assets were used:
+* [JavaScript ES6](https://www.javascript.com/)
+* [Bootstrap](https://getbootstrap.com/)
+Furthermore the requirements set for this application were supplied by Trilogy Education Services.
 
-screenshot of site
+© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
