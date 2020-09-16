@@ -19,7 +19,8 @@ var scores=[];
 var container = $("#container");
 var container2 = $("#container2");
 var question = $("<h4>");
-
+//initialise counter variable 
+var counter=0;
 //variables for timer
 var minutesLeft = 1;
 var totalSeconds = 0;
@@ -46,7 +47,6 @@ $(".start").on("click", function () {
 
 function questions() {
     container2.empty();
-    var counter = 0;
     console.log("counter: "+counter);
     question.text(qArray[counter]);
     container2.append(question);
@@ -60,6 +60,12 @@ function questions() {
     }
     counter++;
     console.log("counter: "+counter);
+    //answer on click
+$(".answer").on("click", function () {
+    console.log("answer clicked");
+    checkAnswer(this.textContent);
+    questions();
+});
 }
 
 function checkAnswer(answerSelected) {
@@ -156,9 +162,3 @@ function saveScore(lastScore){
     showLeaderBoard();
 }
 
-//answer on click
-$(".answer").on("click", function () {
-    console.log("answer clicked");
-    checkAnswer(this.textContent);
-    questions();
-});
