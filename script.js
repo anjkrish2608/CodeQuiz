@@ -13,14 +13,14 @@ var ans = {
     "4": q5Ans,
 }
 var answerSelected;
-var score;
-var scores=[];
+var score = 0;
+var scores = [];
 //variable to html
 var container = $("#container");
 var container2 = $("#container2");
 var question = $("<h4>");
 //initialise counter variable 
-var counter=0;
+var counter = 0;
 //variables for timer
 var minutesLeft = 1;
 var totalSeconds = 0;
@@ -47,70 +47,81 @@ $(".start").on("click", function () {
 
 function questions() {
     container2.empty();
-    console.log("counter: "+counter);
     question.text(qArray[counter]);
     container2.append(question);
-    //loop to create question n answer field
-    for (var k = 0; k < ans[counter].length; k++) {
-        var answerButton = $("<button>");
-        answerButton.text(ans[counter][k]);
-        answerButton.attr("class", "btn btn-warning answer");
-        container2.append(answerButton);
-        container2.append($("<br>"));
+    if (counter !== 5) {
+        //loop to create question n answer field
+        for (var k = 0; k < ans[counter].length; k++) {
+            var answerButton = $("<button>");
+            answerButton.text(ans[counter][k]);
+            answerButton.attr("class", "btn btn-warning answer");
+            container2.append(answerButton);
+            container2.append($("<br>"));
+        }
+        //answer on click
+        $(".answer").on("click", function () {
+            console.log("answer clicked: " + this.textContent);
+            checkAnswer(this.textContent);
+            questions();
+        });
+        counter++;
+        
     }
-    counter++;
-    console.log("counter: "+counter);
-    //answer on click
-$(".answer").on("click", function () {
-    console.log("answer clicked");
-    checkAnswer(this.textContent);
-    questions();
-});
+
 }
 
 function checkAnswer(answerSelected) {
-    if (counter === 0) {
-        if (ans[0].answerSelected === "Cascading Style Sheets") {
-            score++;
-        }
-        else {
-            secondsLeft - 10;
-        }
+    console.log(counter);
+    switch (counter-1) {
+        case 0:
+            if (answerSelected === "Cascading Style Sheets") {
+                score++;
+                console.log("anj");
+            }
+            else {
+                secondsLeft - 10;
+            }
+            break;
+
+        case 1:
+            if (answerSelected === "git add git commit git push") {
+                score++;
+            }
+            else {
+                secondsLeft - 10;
+            }
+            break;
+
+        case 2:
+            if (answerSelected === "<br>") {
+                score++;
+            }
+            else {
+                secondsLeft - 10;
+            }
+            break;
+
+        case 3:
+            if (answerSelected === "spacing") {
+                score++;
+            }
+            else {
+                secondsLeft - 10;
+            }
+            break;
+
+        case 4:
+            if (answerSelected === "in relation to nearest ancestor") {
+                score++;
+                saveScore(score);
+            }
+            else {
+                secondsLeft - 10;
+                saveScore(score);
+            }
+            break;
     }
-    else if (counter === 1) {
-        if (ans[1].answerSelected === "git add git commit git push") {
-            score++;
-        }
-        else {
-            secondsLeft - 10;
-        }
-    }
-    else if (counter === 2) {
-        if (ans[2].answerSelected === "<br>") {
-            score++;
-        }
-        else {
-            secondsLeft - 10;
-        }
-    }
-    else if (counter === 3) {
-        if (ans[3].answerSelected === "spacing") {
-            score++;
-        }
-        else {
-            secondsLeft - 10;
-        }
-    }
-    else {
-        if (ans[4].answerSelected === "in relation to nearest ancestor") {
-            score++;
-            saveScore(score);
-        }
-        else {
-            secondsLeft - 10;
-            saveScore(score);
-        }
-    }
+    console.log("score: " + score);
     $("#score").text(score);
 }
 
@@ -144,10 +155,10 @@ function showLeaderBoard() {
     question.text("Leaderboard of Anj's Coding Quiz!!");
     var list = $("<ol>");
     var lItem = $("<li>");
-    var LBlastScore=localStorage.getItem("lastScore");
-    var LBscores=localStorage.getItem("scores");
-    for(var i=0;i<LBscores.length;i++){
-        var score_i =lItem.text(LBscores[i]);
+    var LBlastScore = localStorage.getItem("lastScore");
+    var LBscores = localStorage.getItem("scores");
+    for (var i = 0; i < LBscores.length; i++) {
+        var score_i = lItem.text(LBscores[i]);
         list.append(score_i);
     }
     list.append(LBlastScore);
@@ -155,10 +166,10 @@ function showLeaderBoard() {
     container2.append(list);
 }
 
-function saveScore(lastScore){
+function saveScore(lastScore) {
     scores.unshift(lastScore);
-    localStorage.setItem("lastScore",lastScore);
-    localStorage.setItem("scores",scores);
+    localStorage.setItem("lastScore", lastScore);
+    localStorage.setItem("scores", scores);
     showLeaderBoard();
 }
 
